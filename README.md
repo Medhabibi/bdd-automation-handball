@@ -141,29 +141,30 @@ Ce dépôt illustre un **cycle de test QA complet** :
 
 ## 📂 Structure du projet
 
+```text
 bdd-automation-handball/
 │
-├── docs/ # Partie QA manuelle
-│ ├── TestCases.md # Cas de tests
-│ ├── TestExecution.md # Résultats d'exécution
-│ └── BugReports.md # Anomalies détectées
+├── docs/                           # Partie QA manuelle
+│   ├── TestCases.md                # Cas de tests
+│   ├── TestExecution.md            # Résultats d'exécution
+│   └── BugReports.md               # Anomalies détectées
 │
 ├── src/
-│ ├── main/resources/
-│ │ └── config.properties # Fichier de configuration (URL, navigateur…)
-│ └── test/java/
-│ ├── com/handball/helper/ # Gestion WebDriver et config
-│ ├── com/handball/pages/ # Page Object Models
-│ ├── com/handball/runners/ # Runner JUnit 5 (RunCucumberTests.java)
-│ ├── com/handball/tests/ # Tests indépendants
-│ └── com/handball/stepDefinitions/ # Étapes Gherkin
+│   ├── main/resources/
+│   │   └── config.properties       # Fichier de configuration (URL, navigateur…)
+│   └── test/java/
+│       ├── com/handball/helper/    # Gestion WebDriver et config
+│       ├── com/handball/pages/     # Page Object Models
+│       ├── com/handball/runners/   # Runner JUnit 5 (RunCucumberTests.java)
+│       ├── com/handball/tests/     # Tests indépendants
+│       └── com/handball/stepDefinitions/  # Étapes Gherkin
 │
 ├── src/test/resources/features/
-│ └── login.feature # Scénarios BDD Gherkin
+│   └── login.feature               # Scénarios BDD Gherkin
 │
-├── pom.xml # Dépendances Maven
-├── .gitignore # Fichiers ignorés
-└── README.md # Présentation du projet
+├── pom.xml                         # Dépendances Maven
+├── .gitignore                      # Fichiers ignorés
+└── README.md                       # Présentation du projet
 
 
 ---
