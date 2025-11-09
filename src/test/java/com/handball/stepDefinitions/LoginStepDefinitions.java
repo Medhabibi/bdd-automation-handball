@@ -11,22 +11,21 @@ public class LoginStepDefinitions {
     private static final Logger logger = LogManager.getLogger(LoginStepDefinitions.class);
     private LoginPage loginPage;
 
-    @Given("user is on the login page")
-    public void user_is_on_the_login_page() {
+    @Given("the user navigates to the home page")
+    public void the_user_navigates_to_the_home_page() {
         logger.info("=== Début du scénario de connexion ===");
         Config.initialize();
         loginPage = new LoginPage();
     }
 
-    // ✅ On utilise maintenant la navigation par menu dynamique
-    @When("user selects the role {string}")
-    public void user_selects_the_role(String role) {
+    @When("the user selects the role {string} from the menu")
+    public void the_user_selects_the_role_from_the_menu(String role) {
         logger.info("Sélection du rôle via le menu : " + role);
-        loginPage.openRoleLoginPage(role); // 🔥 nouvelle méthode du LoginPage
+        loginPage.openRoleLoginPage(role);
     }
 
-    @When("enters {string} and {string}")
-    public void enters_and(String username, String password) {
+    @When("the user enters {string} and {string}")
+    public void the_user_enters_and(String username, String password) {
         logger.info("Saisie des identifiants...");
         loginPage.enterEmail(username);
         loginPage.enterPassword(password);

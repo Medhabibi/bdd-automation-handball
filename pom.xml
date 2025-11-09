@@ -1,126 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-<<<<<<< HEAD
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
-         http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.handball</groupId>
-  <artifactId>bdd-automation-handball</artifactId>
-  <version>1.0-SNAPSHOT</version>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-  <properties>
-    <maven.compiler.source>17</maven.compiler.source>
-    <maven.compiler.target>17</maven.compiler.target>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <cucumber.version>7.11.0</cucumber.version>
-    <junit.jupiter.version>5.9.3</junit.jupiter.version>
-  </properties>
+    <modelVersion>4.0.0</modelVersion>
 
-  <dependencies>
-    <!-- ✅ Cucumber (JUnit 5 Engine) -->
-=======
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+    <groupId>com.handball</groupId>
+    <artifactId>bdd-automation-handball</artifactId>
+    <version>1.0-SNAPSHOT</version>
 
-  <groupId>com.handball.qa</groupId>
-  <artifactId>bdd-automation-handball</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <name>bdd-automation-handball</name>
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <cucumber.version>7.15.0</cucumber.version>
+        <junit.jupiter.version>5.10.2</junit.jupiter.version>
+    </properties>
 
-  <properties>
-    <maven.compiler.release>17</maven.compiler.release>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <cucumber.version>7.15.0</cucumber.version>
-    <junit.jupiter.version>5.10.2</junit.jupiter.version>
-  </properties>
+    <dependencies>
+        <!-- ✅ Cucumber -->
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>${cucumber.version}</version>
+            <scope>test</scope>
+        </dependency>
 
-  <dependencies>
-    <!-- Cucumber + JUnit5 -->
->>>>>>> 7f7791a7593702e6c23d9ab7fa5f59763ff1c100
-    <dependency>
-      <groupId>io.cucumber</groupId>
-      <artifactId>cucumber-java</artifactId>
-      <version>${cucumber.version}</version>
-      <scope>test</scope>
-    </dependency>
-<<<<<<< HEAD
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-junit-platform-engine</artifactId>
+            <version>${cucumber.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- ✅ JUnit Platform Suite API (nécessaire pour @Suite, @IncludeEngines, etc.) -->
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-suite</artifactId>
+            <version>1.9.3</version>
+            <scope>test</scope>
+        </dependency>
 
-=======
->>>>>>> 7f7791a7593702e6c23d9ab7fa5f59763ff1c100
-    <dependency>
-      <groupId>io.cucumber</groupId>
-      <artifactId>cucumber-junit-platform-engine</artifactId>
-      <version>${cucumber.version}</version>
-      <scope>test</scope>
-    </dependency>
 
-<<<<<<< HEAD
-    <!-- ✅ JUnit 5 -->
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-engine</artifactId>
-      <version>${junit.jupiter.version}</version>
-      <scope>test</scope>
-    </dependency>
+        <!-- ✅ JUnit 5 (tous les modules) -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${junit.jupiter.version}</version>
+            <scope>test</scope>
+        </dependency>
 
-    <!-- ✅ Selenium + WebDriverManager -->
-    <dependency>
-      <groupId>org.seleniumhq.selenium</groupId>
-      <artifactId>selenium-java</artifactId>
-      <version>4.9.1</version>
-    </dependency>
-    <dependency>
-      <groupId>io.github.bonigarcia</groupId>
-      <artifactId>webdrivermanager</artifactId>
-      <version>5.3.2</version>
-    </dependency>
+        <!-- ✅ Selenium 4.23.0 (compatible Java 17) -->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>4.23.0</version>
+        </dependency>
 
-    <!-- ✅ Log4j2 -->
-    <dependency>
-      <groupId>org.apache.logging.log4j</groupId>
-      <artifactId>log4j-api</artifactId>
-      <version>2.22.0</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.logging.log4j</groupId>
-      <artifactId>log4j-core</artifactId>
-      <version>2.22.0</version>
-    </dependency>
-=======
-    <!-- JUnit 5 -->
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter</artifactId>
-      <version>${junit.jupiter.version}</version>
-      <scope>test</scope>
-    </dependency>
->>>>>>> 7f7791a7593702e6c23d9ab7fa5f59763ff1c100
-  </dependencies>
+        <!-- ✅ WebDriverManager stable compatible Java 17 -->
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>5.3.2</version>
+        </dependency>
 
-  <build>
-    <plugins>
-<<<<<<< HEAD
-      <!-- Compiler -->
-      <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.11.0</version>
-      </plugin>
+        <!-- ✅ Correction des CVE Apache Commons IO -->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.14.0</version>
+        </dependency>
 
-      <!-- JUnit Platform (Surefire) -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <version>3.1.2</version>
-=======
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <version>3.2.5</version>
->>>>>>> 7f7791a7593702e6c23d9ab7fa5f59763ff1c100
-        <configuration>
-          <useModulePath>false</useModulePath>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
+        <!-- ✅ Log4j -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>2.22.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.22.0</version>
+        </dependency>
+
+
+
+
+
+
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- ✅ Compiler Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+            </plugin>
+
+            <!-- ✅ JUnit Platform (Surefire) -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.2.5</version>
+                <configuration>
+                    <useModulePath>false</useModulePath>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
 </project>
