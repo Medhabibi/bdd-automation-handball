@@ -1,4 +1,5 @@
 # 🏐 BDD Automation – Handball Management
+[![CI - BDD Automation Maven Build](https://github.com/Medhabibi/bdd-automation-handball/actions/workflows/maven.yml/badge.svg)](https://github.com/Medhabibi/bdd-automation-handball/actions/workflows/maven.yml)
 
 [![Java](https://img.shields.io/badge/Java-17-orange)](https://www.oracle.com/java/)
 [![Maven](https://img.shields.io/badge/Maven-Build-blue)](https://maven.apache.org/)
