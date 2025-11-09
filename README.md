@@ -11,70 +11,22 @@
 
 ## 🧠 À propos du projet
 
-Projet QA complet (**manuel + automatisation**) réalisé sur la plateforme [Handball Management](https://www.handball-management.com/).
+Ce projet illustre un **cycle QA complet (manuel + automatisation)** appliqué à la plateforme réelle [Handball Management](https://www.handball-management.com/).
 
-Ce dépôt illustre un **cycle de test QA complet** :
-- Rédaction et documentation des cas de tests manuels.
-- Automatisation des scénarios critiques en **BDD (Cucumber + Selenium)**.
-- Exécution et génération de rapports de test.
-- Vitrine technique pour un poste de **QA Engineer / Test Automation Engineer**.
-
----
-
-## 🎯 Objectifs
-
-- Appliquer la méthodologie **ISTQB** dans un vrai projet web.
-- Centraliser la **documentation QA** : cas de tests, bugs, exécutions.
-- Automatiser le parcours de connexion et les rôles utilisateurs.
-- Simuler un environnement professionnel (CI/CD, logs, reports).
+L’objectif est de **montrer la maîtrise d’un environnement professionnel QA** à travers :
+- La **rédaction des cas de test manuels** et leur documentation.
+- L’**automatisation des scénarios critiques** via **BDD (Cucumber + Selenium)**.
+- La **génération de rapports** et la gestion des logs.
+- Une **démonstration concrète** des compétences requises pour un poste de **QA Engineer / Test Automation Engineer**.
 
 ---
 
-## 🛠️ Stack technique
+## 🎯 Objectifs pédagogiques et professionnels
 
-| Domaine | Outil / Technologie |
-|----------|----------------------|
-| Langage | Java 17 |
-| Framework | Selenium WebDriver 4 + Cucumber 7 + JUnit 5 |
-| Build Tool | Maven |
-| IDE | Eclipse / IntelliJ |
-| Logs | Log4j2 |
-| CI/CD | GitHub Actions *(à venir)* |
-| Versioning | Git + GitHub |
-
----
-
-## 📂 Structure du projet
-
-# 🏐 BDD Automation – Handball Management
-
-[![Java](https://img.shields.io/badge/Java-17-orange)](https://www.oracle.com/java/)
-[![Maven](https://img.shields.io/badge/Maven-Build-blue)](https://maven.apache.org/)
-[![Selenium](https://img.shields.io/badge/Selenium-WebDriver-brightgreen)](https://www.selenium.dev/)
-[![Cucumber](https://img.shields.io/badge/Cucumber-BDD-success)](https://cucumber.io/)
-[![JUnit](https://img.shields.io/badge/JUnit-5-red)](https://junit.org/junit5/)
-[![License](https://img.shields.io/badge/license-MIT-lightgrey)](LICENSE)
-
----
-
-## 🧠 À propos du projet
-
-Projet QA complet (**manuel + automatisation**) réalisé sur la plateforme [Handball Management](https://www.handball-management.com/).
-
-Ce dépôt illustre un **cycle de test QA complet** :
-- Rédaction et documentation des cas de tests manuels.
-- Automatisation des scénarios critiques en **BDD (Cucumber + Selenium)**.
-- Exécution et génération de rapports de test.
-- Vitrine technique pour un poste de **QA Engineer / Test Automation Engineer**.
-
----
-
-## 🎯 Objectifs
-
-- Appliquer la méthodologie **ISTQB** dans un vrai projet web.
-- Centraliser la **documentation QA** : cas de tests, bugs, exécutions.
-- Automatiser le parcours de connexion et les rôles utilisateurs.
-- Simuler un environnement professionnel (CI/CD, logs, reports).
+- Appliquer la méthodologie **ISTQB** dans un projet web réel.  
+- Centraliser la **documentation QA** (test cases, exécutions, anomalies).  
+- Automatiser les **tests de connexion et rôles utilisateurs**.  
+- Simuler un environnement **CI/CD et reporting professionnel**.  
 
 ---
 
@@ -85,61 +37,14 @@ Ce dépôt illustre un **cycle de test QA complet** :
 | Langage | Java 17 |
 | Framework | Selenium WebDriver 4 + Cucumber 7 + JUnit 5 |
 | Build Tool | Maven |
-| IDE | Eclipse / IntelliJ |
+| IDE | IntelliJ IDEA / Eclipse |
 | Logs | Log4j2 |
-| CI/CD | GitHub Actions *(à venir)* |
+| CI/CD | GitHub Actions *(en cours d’intégration)* |
 | Versioning | Git + GitHub |
 
 ---
 
-## 📂 Structure du projet
-# 🏐 BDD Automation – Handball Management
-
-[![Java](https://img.shields.io/badge/Java-17-orange)](https://www.oracle.com/java/)
-[![Maven](https://img.shields.io/badge/Maven-Build-blue)](https://maven.apache.org/)
-[![Selenium](https://img.shields.io/badge/Selenium-WebDriver-brightgreen)](https://www.selenium.dev/)
-[![Cucumber](https://img.shields.io/badge/Cucumber-BDD-success)](https://cucumber.io/)
-[![JUnit](https://img.shields.io/badge/JUnit-5-red)](https://junit.org/junit5/)
-[![License](https://img.shields.io/badge/license-MIT-lightgrey)](LICENSE)
-
----
-
-## 🧠 À propos du projet
-
-Projet QA complet (**manuel + automatisation**) réalisé sur la plateforme [Handball Management](https://www.handball-management.com/).
-
-Ce dépôt illustre un **cycle de test QA complet** :
-- Rédaction et documentation des cas de tests manuels.
-- Automatisation des scénarios critiques en **BDD (Cucumber + Selenium)**.
-- Exécution et génération de rapports de test.
-- Vitrine technique pour un poste de **QA Engineer / Test Automation Engineer**.
-
----
-
-## 🎯 Objectifs
-
-- Appliquer la méthodologie **ISTQB** dans un vrai projet web.
-- Centraliser la **documentation QA** : cas de tests, bugs, exécutions.
-- Automatiser le parcours de connexion et les rôles utilisateurs.
-- Simuler un environnement professionnel (CI/CD, logs, reports).
-
----
-
-## 🛠️ Stack technique
-
-| Domaine | Outil / Technologie |
-|----------|----------------------|
-| Langage | Java 17 |
-| Framework | Selenium WebDriver 4 + Cucumber 7 + JUnit 5 |
-| Build Tool | Maven |
-| IDE | Eclipse / IntelliJ |
-| Logs | Log4j2 |
-| CI/CD | GitHub Actions *(à venir)* |
-| Versioning | Git + GitHub |
-
----
-
-## 📂 Structure du projet
+## 📁 Structure du projet
 
 ```text
 bdd-automation-handball/
@@ -151,25 +56,25 @@ bdd-automation-handball/
 │
 ├── src/
 │   ├── main/resources/
-│   │   └── config.properties       # Fichier de configuration (URL, navigateur…)
+│   │   └── config.properties       # Configuration (URL, navigateur, etc.)
 │   └── test/java/
-│       ├── com/handball/helper/    # Gestion WebDriver et config
+│       ├── com/handball/helper/    # Gestion WebDriver & Config
 │       ├── com/handball/pages/     # Page Object Models
-│       ├── com/handball/runners/   # Runner JUnit 5 (RunCucumberTests.java)
-│       ├── com/handball/tests/     # Tests indépendants
+│       ├── com/handball/runners/   # Runners JUnit 5 / Cucumber
+│       ├── com/handball/hooks/     # Hooks (Before/After)
 │       └── com/handball/stepDefinitions/  # Étapes Gherkin
 │
 ├── src/test/resources/features/
-│   └── login.feature               # Scénarios BDD Gherkin
+│   └── login_joueur.feature        # Scénarios BDD Gherkin
 │
 ├── pom.xml                         # Dépendances Maven
 ├── .gitignore                      # Fichiers ignorés
 └── README.md                       # Présentation du projet
-
+```
 
 ---
 
-## 🤖 Exemple de scénario BDD
+## 🧩 Exemple de scénario BDD
 
 ```gherkin
 Feature: Login Functionality for all user roles
@@ -191,52 +96,53 @@ Feature: Login Functionality for all user roles
       | Coach            | admin@gmail.com   | Azert123@  | success_redirect_dashboard |
       | Manager          | admin@gmail.com   | Azert123@  | success_redirect_dashboard |
       | Player (erreur)  | admin@gmail.com   | wrongPass  | error_invalid_credentials  |
-
-▶️ Exécution locale
-🧱 Prérequis
-
-Java 17+
-
-Maven installé
-
-Chrome + ChromeDriver
-
-Eclipse / IntelliJ configuré
-
-🚀 Lancer les tests
-mvn test
-
-Les rapports seront disponibles dans :
-target/cucumber-reports.html
-
-📊 Partie manuelle (docs/)
-
-Cas de tests
-
-Exécutions
-
-Bugs
-
-👨‍💻 Auteur
-
-Mohamed Taib Ben Salha
-🧩 QA Engineer | Automation Tester | ISTQB Certified
-📍 Tunisie
-🔗 GitHub – Medhabibi
-
-🏁 Prochaines étapes
-
-✅ Ajout des tests API (RestAssured / Postman)
-
-✅ Intégration CI/CD via GitHub Actions
-
-⏳ Reporting avec Allure Reports
-
-⏳ Extension des scénarios (Managers / Joueurs / Entraîneurs)
-
-⭐ Si ce projet t’a inspiré, pense à lui mettre une star sur GitHub !
-
+```
 
 ---
 
-Souhaites-tu que je te le **prépare directement en fichier `README.md` téléchargeable**, pour que tu le
+## ▶️ Exécution locale
+
+### 🧱 Prérequis
+- Java 17+  
+- Maven installé  
+- Chrome + ChromeDriver  
+- IDE configuré (Eclipse / IntelliJ)  
+
+### 🚀 Lancer les tests
+```bash
+mvn test
+```
+
+Les rapports seront générés dans :
+```
+target/reports/
+```
+
+---
+
+## 📊 Partie manuelle (docs/)
+- Cas de tests manuels  
+- Exécution et validation  
+- Rapports d’anomalies  
+
+---
+
+## 👨‍💻 Auteur
+
+**Mohamed Taib Ben Salha**  
+🧩 *QA Engineer | Test Automation | ISTQB Certified*  
+📍 Tunisie  
+🔗 [GitHub – Medhabibi](https://github.com/Medhabibi)
+
+---
+
+## 🏁 Prochaines étapes
+
+✅ Tests API (Postman / RestAssured)  
+✅ CI/CD avec GitHub Actions  
+⏳ Reporting avancé (Allure Reports)  
+⏳ Extension des scénarios : Managers, Joueurs, Entraîneurs  
+
+---
+
+⭐ *Si ce projet t’a inspiré ou aidé, pense à lui mettre une star sur GitHub !*  
