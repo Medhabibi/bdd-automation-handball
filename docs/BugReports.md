@@ -1,85 +1,113 @@
-# 🐞 Bug Reports – Handball Management
+# 🐞 Bug Reports – Handball Management (Réel)
 
-Ce document répertorie les anomalies détectées lors des campagnes de test du module **Handball Management**.  
-Chaque bug est documenté selon les standards ISTQB : ID unique, description, sévérité, priorité et reproductibilité.
+Ce document répertorie uniquement les **anomalies réellement observées**
+lors des tests (manuels ou automatisés) du projet **Handball Management**.
+
+Chaque bug est documenté avec un ID unique, une description claire,
+et un niveau de sévérité/priorité conforme aux standards QA/ISTQB.
 
 ---
 
 ## 🧩 Résumé global
 
-| 🔢 Total Bugs | 🟥 Critiques | 🟧 Moyens | 🟨 Mineurs | ⚙️ Corrigés | ⏳ Ouverts |
-|---------------|--------------|-----------|------------|-------------|------------|
-| 3 | 1 | 1 | 1 | 0 | 3 |
+| 🔢 Total Bugs | 🟥 Critiques | 🟦 Hautes | 🟧 Moyennes | 🟨 Mineures | ⚙️ Corrigés | ⏳ Ouverts |
+|--------------|--------------|-----------|------------|------------|------------|-----------|
+| **1** | 0 | **1** | 0 | 0 | 0 | **1** |
+
+> 📌 Ce document sera mis à jour à chaque nouveau bug réel identifié.
 
 ---
 
-## 🐞 Détails des anomalies
+## 🐞 Détails des anomalies réelles
 
-### **BUG001 – Absence de message d’erreur lors d’un login incorrect**
+---
+
+### **BUG001 – Le menu “Managers” redirige vers la page Joueurs**
+
 | Champ | Détail |
 |-------|--------|
 | **ID** | BUG001 |
-| **Module** | Login Joueur |
-| **Étapes pour reproduire** | 1️⃣ Email valide + 2️⃣ Mot de passe incorrect + 3️⃣ Cliquer sur *Connexion* |
-| **Résultat attendu** | Un message d’erreur clair : **"Identifiants incorrects"** |
-| **Résultat obtenu** | Aucun message affiché → retour silencieux |
-| **Sévérité** | Haute |
-| **Priorité** | Haute |
-| **Statut** | 🟡 Ouvert |
-| **Reproductibilité** | Toujours |
-| **Cas de test liés** | [TC008](TestCases.md#module--login-joueur) / [TC009](TestCases.md#module--login-joueur) |
+| **Module** | Frontend – Navigation du menu principal |
+| **Type de test** | Test automatisé (Cucumber + Selenium) + vérification manuelle |
+| **Environnement** | Chrome 142 – Windows 11 – URL : https://www.handball-management.com |
+
+#### 🔁 Étapes pour reproduire :
+1. Ouvrir la page d’accueil : `https://www.handball-management.com/index.php`
+2. Cliquer sur **“Managers”** dans le menu principal
+3. Observer la page affichée
+
+connexion/inscri_equipe.php
+#### ✅ Résultat attendu :
+L’utilisateur doit être redirigé vers une **page dédiée aux managers**, par exemple :
+
+#### ❌ Résultat obtenu :
+L’utilisateur est redirigé vers une page d'inscription **Joueurs** :
+https://handball-management.com/connexion/inscri_joueurs.php
+
+#### 🔍 Analyse technique :
+Le code HTML indique une mauvaise configuration du lien :
+
+```html
+<a class="nav-link" href="les_interfaces/club_joueurs.php">Managers</a>
+➡ Le lien pointe vers club_joueurs.php au lieu d’une page managers.
+🎯 Impact :
+
+
+Les managers n’ont pas accès à leur interface depuis le menu.
+
+
+Rupture complète du parcours utilisateur.
+
+
+Bug visible en production.
+
+
+Impact fonctionnel important.
+
+
+🏷️ Sévérité : Haute
+⏱️ Priorité : Haute
+🔄 Statut : 🟡 Ouvert
+♻️ Reproductibilité : Toujours
+🔗 Tests automatisés liés :
+
+
+Feature : src/test/resources/features/frontend/navigation.feature
+
+
+Scénario : Scenario: Accès à la page Managers
+
+
+Tag recommandé : @bug_menu_managers
+
+
+📎 Évidences à conserver :
+
+
+Capture du menu montrant “Managers”
+
+
+Capture de l’URL affichée (inscri_joueurs.php)
+
+
+Capture de l’HTML du lien incorrect
+
+
+Logs Cucumber montrant :
+URL attendue : inscri_equipe.php, obtenue : inscri_joueurs.php
+
+
+
+✍️ Rédigé par :
+Mohamed Taib Ben Salha – QA Engineer
+📅 Mise à jour : Novembre 2025
+📍 Projet : Handball Management – QA Automation (réel)
 
 ---
 
-### **BUG002 – Le champ “Âge” accepte du texte**
-| Champ | Détail |
-|-------|--------|
-| **ID** | BUG002 |
-| **Module** | Inscription Joueur |
-| **Étapes pour reproduire** | 1️⃣ Aller sur le formulaire d’inscription <br> 2️⃣ Champ “Âge” = `abc` <br> 3️⃣ Cliquer sur *S’inscrire* |
-| **Résultat attendu** | Message : **"L’âge doit être un nombre"** |
-| **Résultat obtenu** | Formulaire accepté → validation défaillante |
-| **Sévérité** | Moyenne |
-| **Priorité** | Moyenne |
-| **Statut** | 🟡 Ouvert |
-| **Reproductibilité** | Toujours |
-| **Cas de test lié** | [TC005](TestCases.md#module--inscription-joueur) |
+✔️ Maintenant, tu peux **remplacer entièrement ton ancien BugReport.md** par ce fichier.  
+✔️ Et à chaque bug réel que nous trouvons, je te génère la section complète **BUG002**, **BUG003**, etc.
 
----
+Tu veux que je prépare aussi un fichier **TestCases.md réel** ou on continue avec un **nouveau bug réel** ?
 
-### **BUG003 – Le bouton “Login” reste actif avec champs vides**
-| Champ | Détail |
-|-------|--------|
-| **ID** | BUG003 |
-| **Module** | Login Joueur |
-| **Étapes pour reproduire** | 1️⃣ Laisser les champs email et mot de passe vides <br> 2️⃣ Cliquer sur *Connexion* |
-| **Résultat attendu** | Bouton désactivé tant que les champs sont vides |
-| **Résultat obtenu** | Bouton cliquable → rechargement inutile |
-| **Sévérité** | Basse |
-| **Priorité** | Moyenne |
-| **Statut** | 🟡 Ouvert |
-| **Reproductibilité** | Toujours |
-| **Cas de test lié** | [TC010](TestCases.md#module--login-joueur) |
 
----
-
-## 📈 Synthèse des anomalies
-
-| Catégorie | Nombre | Pourcentage |
-|------------|----------|-------------|
-| 🟥 Critiques | 1 | 33% |
-| 🟧 Moyens | 1 | 33% |
-| 🟨 Mineurs | 1 | 33% |
-| ⚙️ Corrigés | 0 | 0% |
-
-📌 **Analyse :**
-- Le module **Login Joueur** présente plusieurs anomalies de validation.
-- Aucune erreur bloquante pour la navigation générale, mais **l’expérience utilisateur est dégradée**.
-- Ces anomalies doivent être corrigées avant l’intégration en production.
-
----
-
-✍️ **Rédigé par :**  
-**Mohamed Taib Ben Salha** – QA Engineer  
-📅 Date de mise à jour : Novembre 2025  
-📍 Projet : *Handball Management – QA Automation*
