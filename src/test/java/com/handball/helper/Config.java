@@ -1,15 +1,14 @@
 package com.handball.helper;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.time.Duration;
-import java.util.Properties;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+
+import java.io.IOException;
+import java.time.Duration;
+import java.util.Properties;
 
 public class Config {
 
@@ -17,13 +16,36 @@ public class Config {
     public static Properties prop;
     public static final Logger logger = LogManager.getLogger(Config.class);
 
-    // Initialise le navigateur et charge la config
-    public static void initialize() {
+    // ============================
+    // 🔹 Chargement du fichier config.properties
+    // ============================
+    public static void loadProperties() {
         try {
-        	prop = new Properties();
-        	prop.load(Config.class.getClassLoader().getResourceAsStream("config.properties"));
+            prop = new Properties();
+            prop.load(Config.class.getClassLoader().getResourceAsStream("config.properties"));
+        } catch (IOException e) {
+            logger.error("Erreur chargement config.properties : " + e.getMessage());
+        }
+    }
 
+    // ============================
+    // 🔹 Accès aux propriétés
+    // ============================
+    public static String getProperty(String key) {
+        if (prop == null) {
+            loadProperties();
+        }
+        return prop.getProperty(key);
+    }
 
+    // ============================
+    // 🔹 Initialisation WebDriver
+    // ============================
+    public static void initialize() {
+
+        loadProperties(); // Charger les propriétés avant l'URL
+
+        try {
             System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
 
             ChromeOptions options = new ChromeOptions();
@@ -35,18 +57,32 @@ public class Config {
             driver.manage().window().maximize();
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
-            String url = prop.getProperty("url");
+            // Charger l'URL d'accueil
+            String url = getProperty("url");
             driver.get(url);
+
             logger.info("Navigated to: " + url);
 
-        } catch (IOException e) {
-            logger.error("Failed to load configuration file: " + e.getMessage());
         } catch (Exception e) {
             logger.error("Driver initialization error: " + e.getMessage());
         }
     }
 
-    // Ferme proprement le navigateur
+    // ============================
+    // 🔹 Récupérer driver (Singleton)
+    // ============================
+    public static WebDriver getDriver() {
+
+        if (driver == null) {
+            initialize();
+        }
+
+        return driver;
+    }
+
+    // ============================
+    // 🔹 Fermer le navigateur
+    // ============================
     public static void closeBrowser() {
         if (driver != null) {
             driver.quit();
