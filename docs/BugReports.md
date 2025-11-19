@@ -103,11 +103,6 @@ Mohamed Taib Ben Salha – QA Engineer
 📅 Mise à jour : Novembre 2025
 📍 Projet : Handball Management – QA Automation (réel)
 
----
 
-✔️ Maintenant, tu peux **remplacer entièrement ton ancien BugReport.md** par ce fichier.  
-✔️ Et à chaque bug réel que nous trouvons, je te génère la section complète **BUG002**, **BUG003**, etc.
-
-Tu veux que je prépare aussi un fichier **TestCases.md réel** ou on continue avec un **nouveau bug réel** ?
 
 
