@@ -96,6 +96,14 @@ Capture de l’HTML du lien incorrect
 Logs Cucumber montrant :
 URL attendue : inscri_equipe.php, obtenue : inscri_joueurs.php
 
+### Automatisation
+❌ Test NON AUTOMATISABLE
+
+**Motif :** Le formulaire utilise `jqBootstrapValidation`, un script JavaScript qui empêche
+ Selenium d’interagir correctement avec les champs (événements `input`, `blur`, `change`).
+ Le test automatique serait instable et non fiable.
+
+
 
 
 ✍️ Rédigé par :
