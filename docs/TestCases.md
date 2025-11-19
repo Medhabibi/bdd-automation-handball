@@ -1,4 +1,4 @@
-# 🧪 Test Cases – Handball Management (Réel)
+# 🧪 Test Cases – Handball Management 
 
 Ce document regroupe **uniquement les cas de test RÉELS** exécutés dans le cadre du projet  
 **Handball Management – QA Manual & Automation**.
@@ -179,4 +179,4 @@ Documenté dans : `BugReports.md`
 ✍️ Rédigé par :  
 **Mohamed Taib Ben Salha – QA Engineer**  
 📅 Mise à jour : Novembre 2025  
-📍 Projet : Handball Management – Réel  
+📍 Projet : Handball Management  
