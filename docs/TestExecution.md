@@ -1,10 +1,10 @@
-# 📊 Test Execution – Handball Management 
+# 📊 Test Execution – Handball Management (Réel)
 
 Ce document présente l’exécution **réelle** des cas de test du projet  
-**Handball Management (Frontend – Joueurs / Navigation)**.
+**Handball Management – Frontend (Navigation & Connexions)**.
 
-Les résultats sont basés sur des tests **effectivement réalisés**,  
-manuels et automatisés, entre Novembre 2025.
+Les résultats reflètent les tests **effectivement réalisés**, manuels et automatisés,  
+entre Novembre 2025.
 
 ---
 
@@ -13,7 +13,7 @@ manuels et automatisés, entre Novembre 2025.
 1. [Résumé global d’exécution](#resume-global)
 2. [Détails d’exécution – Par test case](#details)
    - TC001 – Navigation Managers
-   - TC002 – Connexion Joueur (3 sous-tests)
+   - TC002 – Connexion Joueur (3 sous-tests réels)
 
 ---
 
@@ -21,92 +21,98 @@ manuels et automatisés, entre Novembre 2025.
 
 | ID Test | Description | Statut | Automatisation | Commentaire |
 |--------|-------------|---------|----------------|-------------|
-| **TC001** | Navigation menu → lien "Managers" | ❌ Échoué | 🟢 Automatisable | Bug réel trouvé (BUG001) |
-| **TC002-S1** | Login Joueur – Identifiants valides | ✔ Réussi (manuel) | 🔴 Non automatisable | Bloqué par script JS jqBootstrapValidation |
-| **TC002-S2** | Login Joueur – Email incorrect | ✔ Réussi (manuel) | 🔴 Non automatisisable | Messages d’erreur OK |
-| **TC002-S3** | Login Joueur – Mot de passe incorrect | ✔ Réussi (manuel) | 🔴 Non automatisisable | Messages d’erreur OK |
+| **TC001** | Navigation menu → lien "Managers" | ❌ Échoué | 🟢 Automatisable | Bug réel trouvé → **BUG001** |
+| **TC002-S1** | Login Joueur – Identifiants valides | ✔ Réussi (manuel) | 🔴 Non automatisable | Bloqué par script JS `jqBootstrapValidation` |
+| **TC002-S2** | Login Joueur – Email incorrect | ✔ Réussi (manuel) | 🔴 Non automatisisable | Message d’erreur correct |
+| **TC002-S3** | Login Joueur – Mot de passe incorrect | ✔ Réussi (manuel) | 🔴 Non automatisisable | Message d’erreur correct |
 
 ---
 
-# 🧭 <a name="details"></a> Détail complet d’exécution – Test par test
+# 🧭 <a name="details"></a> Détails complets d’exécution
 
 ---
 
-# 🧩 **TC001 – Navigation menu “Managers”**  
-### Résultat : ❌ **Échoué (réel)**  
-### Automatisation : 🟢 **Oui (test automatisable)**  
-### Bug lié : **BUG001 – Ouvert**
+# 🧩 **TC001 – Navigation menu “Managers”**
 
----
-
-## 🔍 Informations d’exécution
-
+### ✔ Informations générales
 | Élément | Valeur |
 |--------|--------|
+| **Résultat** | ❌ ÉCHOUÉ |
+| **Automatisation** | 🟢 Oui |
+| **Bug lié** | **BUG001 – Ouvert** |
 | **Date** | Novembre 2025 |
-| **Navigateur** | Chrome 142 / Edge 142 |
-| **URL** | https://www.handball-management.com/index.php |
-| **Tester** | Mohamed Taib Ben Salha (QA Engineer) |
+| **Navigateurs** | Chrome 142 / Edge 142 |
+| **URL testée** | https://www.handball-management.com/index.php |
+| **Tester** | Mohamed Taib Ben Salha |
 
 ---
 
 ## 📝 Étapes exécutées
-1. Ouvrir la page d’accueil.  
-2. Cliquer sur le menu **Managers**.  
-3. Observer la page affichée.
+1. Accéder à la page d’accueil.  
+2. Cliquer sur **Managers** dans le menu principal.  
+3. Observer la page redirigée.
 
 ---
 
 ## 🎯 Résultat attendu
-Page dédiée Managers :  
-`connexion/inscri_equipe.php`  
-ou interface Manager.
+L’utilisateur doit être redirigé vers la page dédiée aux managers :
 
----
-
-## ❌ Résultat obtenu (réel)
-Redirection vers :  
-`connexion/inscri_joueurs.php`
-
-➡ Le test est **échoué** car **le lien HTML est mauvais**.
-
----
-
-## 📎 Évidence technique
-```html
-<a class="nav-link" href="les_interfaces/club_joueurs.php">Managers</a>
+```
+connexion/inscri_equipe.php
 ```
 
 ---
 
+## ❌ Résultat obtenu (réel)
+Redirection vers :
+
+```
+connexion/inscri_joueurs.php
+```
+
+➡ Mauvaise URL → Mauvaise interface → Bug confirmé.
+
+---
+
+## 📎 Évidence technique (HTML réel)
+
+```html
+<a class="nav-link" href="les_interfaces/club_joueurs.php">Managers</a>
+```
+
+➡ Le lien pointe vers **club_joueurs.php** → incorrect.
+
+---
+
 ## 📌 Conclusion
-- Défaut confirmé  
-- Bug documenté → **BUG001**  
-- Test **à automatiser** dans la suite du projet
+- Bug confirmé  
+- Bug documenté sous **BUG001**  
+- Test restera **à automatiser** dans la suite du projet
 
 ---
 
 ---
 
-# 🧩 **TC002 – Connexion Joueur (3 scénarios)**  
-➡ Tests réalisés en **manuel** (réels)  
-➡ Automatisation **impossible** avec Selenium → documenté
+# 🧩 **TC002 – Connexion Joueur (3 scénarios réels)**
+
+👉 Ces tests ont été réalisés en **manuel**, car **NON AUTOMATISABLES**  
+(dû au script JS bloquant Selenium).
 
 ---
 
-# ⭐ **TC002-S1 – Connexion joueur – Identifiants valides**
+# ⭐ **TC002-S1 – Connexion Joueur (valide)**
 
 | Élément | Valeur |
 |--------|--------|
-| Résultat | ✔ Réussi (manuel) |
-| Automatisation | 🔴 Non automatisable |
-| Notes | Redirection correcte vers joueurs_club.php |
+| **Résultat** | ✔ Réussi (manuel) |
+| **Automatisation** | 🔴 NON AUTOMATISABLE |
+| **Comportement attendu** | Redirection tableau de bord |
+| **Résultat obtenu** | ✔ Redirection OK |
+| **URL finale** | `les_interfaces/joueurs_club.php` |
 
-### 🔍 Détails réels
-- Email : admin@gmail.com  
-- MDP : Azert123@  
-- Résultat : Dashboard OK ✔  
-- Selenium : ❌ Blocage → ElementNotInteractableException
+### Notes
+- Le comportement utilisateur réel est correct  
+- Selenium → ❌ échoue systématiquement (blocage JS)
 
 ---
 
@@ -114,10 +120,10 @@ Redirection vers :
 
 | Élément | Valeur |
 |--------|--------|
-| Résultat | ✔ Réussi (manuel) |
-| Automatisation | 🔴 Non automatisable |
-| Message attendu | *"L'email n'existe pas."* |
-| Message observé | ✔ Correct |
+| **Résultat** | ✔ Réussi (manuel) |
+| **Automatisation** | 🔴 NON AUTOMATISABLE |
+| **Message attendu** | "L'email n'existe pas." |
+| **Message obtenu** | ✔ Identique |
 
 ---
 
@@ -125,25 +131,30 @@ Redirection vers :
 
 | Élément | Valeur |
 |--------|--------|
-| Résultat | ✔ Réussi (manuel) |
-| Automatisation | 🔴 Non automatisisable |
-| Message attendu | *"Le mot de passe n'est pas correct."* |
-| Message observé | ✔ Correct |
+| **Résultat** | ✔ Réussi (manuel) |
+| **Automatisation** | 🔴 NON AUTOMATISABLE |
+| **Message attendu** | "Le mot de passe n'est pas correct." |
+| **Message obtenu** | ✔ Identique |
 
 ---
 
-# 🚫 Pourquoi TC002 est NON AUTOMATISABLE ? (réel)
+# 🚫 Pourquoi TC002 est NON AUTOMATISABLE ? (Réel)
 
-Le formulaire utilise **jqBootstrapValidation**, un script JS qui :  
+Le formulaire utilise **jqBootstrapValidation**, un script qui :
+
 - bloque les événements clavier  
-- empêche l’interaction WebDriver  
-- intercepte le `submit`  
-- produit des erreurs : ElementNotInteractableException  
-- rend Selenium incapable de taper dans les champs
+- intercepte `input`, `blur`, `change`  
+- empêche le `submit` natif  
+- empêche WebDriver d’envoyer du texte réel  
+- génère des erreurs :  
+  - `ElementNotInteractableException`  
+  - `Timeout waiting for visibility`  
 
-➡ Résultat : **Test instable et non fiable** → NON AUTOMATISABLE
+➡ **Automatisation instable + impossible → Test 100% manuel**
 
-Mentionné dans **BugReports.md + TestCases.md**
+Mentionné également dans :
+- **BugReports.md**
+- **TestCases.md**
 
 ---
 
@@ -152,4 +163,4 @@ Mentionné dans **BugReports.md + TestCases.md**
 ✍️ Rédigé par :  
 **Mohamed Taib Ben Salha – QA Engineer**  
 📅 Novembre 2025  
-📍 Projet : Handball Management – QA   
+📍 Projet : Handball Management – QA Réel  
