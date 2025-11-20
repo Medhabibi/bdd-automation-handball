@@ -1,18 +1,18 @@
 # 🐞 Bug Reports – Handball Management 
 
-Ce document contient **uniquement les anomalies réellement détectées**
+Ce document répertorie uniquement les **anomalies réellement observées**
 lors des tests manuels et automatisés du projet **Handball Management**.
 
 Chaque bug est documenté selon les standards QA/ISTQB :
-ID unique, sévérité, priorité, reproductibilité, environnement et analyse technique.
+ID unique, description, sévérité, priorité, reproductibilité.
 
 ---
 
-## 🧩 Résumé global des anomalies réelles
+## 🧩 Résumé global
 
 | 🔢 Total Bugs | 🟥 Critiques | 🟦 Hautes | 🟧 Moyennes | 🟨 Mineures | ⚙️ Corrigés | ⏳ Ouverts |
 |--------------|--------------|-----------|------------|------------|------------|-----------|
-| **1** | 0 | **1** | 0 | 0 | 0 | **1** |
+| **2** | 0 | **2** | 0 | 0 | 0 | **2** |
 
 ---
 
@@ -22,105 +22,82 @@ ID unique, sévérité, priorité, reproductibilité, environnement et analyse t
 
 ## **BUG001 – Le menu “Managers” redirige vers la page Joueurs**
 
-| Champ | Détail |
+| Champ | Valeur |
 |-------|--------|
 | **ID** | BUG001 |
-| **Module** | Frontend – Menu principal |
-| **Type de test** | Test automatisé + vérification manuelle |
-| **Environnement** | Windows 11 – Chrome 142 – https://www.handball-management.com |
-| **Statut** | 🟡 Ouvert |
+| **Module** | Frontend – Navigation principale |
+| **Type de test** | Automatisé + Manuel |
 | **Sévérité** | Haute |
 | **Priorité** | Haute |
+| **Statut** | 🟡 Ouvert |
 | **Reproductibilité** | Toujours |
+| **Environnement** | Chrome/Edge – Windows 11 |
 
----
-
-### 🔁 Étapes pour reproduire :
-
-1. Ouvrir : https://www.handball-management.com/index.php  
-2. Cliquer sur **“Managers”** dans le menu principal  
+### 🔁 Étapes pour reproduire
+1. Aller sur : https://www.handball-management.com/index.php  
+2. Cliquer sur **Managers**  
 3. Observer la redirection
 
----
+### ✅ Résultat attendu  
+Redirection vers une **page dédiée managers**  
+(ex : inscri_equipe.php)
 
-### ✅ Résultat attendu :
-Redirection vers **la page Managers**, ex : `connexion/inscri_equipe.php`
+### ❌ Résultat obtenu  
+Redirection vers la page **inscription Joueurs**
 
----
-
-### ❌ Résultat obtenu :
-Redirection vers **la page Joueurs** :
-
-```
-https://handball-management.com/connexion/inscri_joueurs.php
-```
-
----
-
-### 🔍 Analyse technique :
+### 🔍 Analyse technique  
+Lien HTML incorrect :
 
 ```html
 <a class="nav-link" href="les_interfaces/club_joueurs.php">Managers</a>
 ```
 
-➡ Mauvais lien → pointe vers **club_joueurs.php**.
+➡ Le lien pointe vers **club_joueurs.php** au lieu d’une page managers.
+
+### 🎯 Impact  
+- Rupture du parcours manager  
+- Impossible d’accéder à son interface  
+- Bug visible en production  
 
 ---
 
-### 🎯 Impact :
+## **BUG002 – Formulaires de connexion impossibles à automatiser**
 
-- Le rôle *Manager* devient inaccessible  
-- Parcours utilisateur bloqué  
-- Bug présent en production  
-- Impact fonctionnel majeur
+| Champ | Valeur |
+|-------|--------|
+| **ID** | BUG002 |
+| **Module** | Frontend – Connexions Joueur / Manager / Entraîneur / Préparateur |
+| **Type de test** | Automatisé (KO) + Manuel (OK) |
+| **Sévérité** | Haute |
+| **Priorité** | Haute |
+| **Statut** | 🟢 Corrigé côté test (contournement) |
+| **Reproductibilité** | Toujours |
+| **Environnement** | Selenium (Chrome + Edge) |
 
----
+### 🔁 Étapes pour reproduire
+1. Ouvrir une page de connexion (ex : inscri_joueurs.php)  
+2. Automatiser la saisie email / password via Selenium  
+3. Observer l’erreur
 
-### 🧪 Tests automatisés liés :
+### ❌ Erreur Selenium  
+`Timeout waiting for visibility of element #email`
 
-- Feature : frontend/navigation.feature  
-- Scénario : Accès menu Managers  
-- Tag : `@bug_menu_managers`
+### 🔍 Analyse technique  
+Le site utilise **jqBootstrapValidation.js**, un script JS incompatible avec Selenium.  
+Il **bloque la propagation des événements input / blur / focus**, ce qui empêche Selenium
+d'interagir correctement avec les champs.
 
----
+### 🎯 Impact  
+Tous les tests login deviennent :  
+➡ **NON AUTOMATISABLES** (instables + non fiables)
 
-### 📎 Preuves à conserver :
-
-- Capture du menu “Managers”
-- Capture de l’URL obtenue
-- Extrait HTML du lien
-- Logs Cucumber/Selenium montrant la mauvaise URL
-
----
-
-## ❌ Test NON AUTOMATISABLE
-
-Ce bug a été découvert en automatisation,  
-**mais le test de connexion Joueur lié reste NON AUTOMATISABLE** pour les raisons suivantes :
-
-### **Motif technique :**
-
-Le formulaire de connexion utilise **jqBootstrapValidation**, un plugin JS qui :
-
-- intercepte les événements `input`, `change`, `keyup`, `blur`  
-- bloque l’interaction Selenium quand les champs ne sont pas “validés” côté JS  
-- empêche l’écriture directe via WebDriver dans certains navigateurs modernes  
-- injecte des conditions dynamiques avant l’envoi du formulaire  
-
-### **Conclusion :**
-Le test d'automatisation devient :
-
-- instable  
-- non déterministe  
-- non fiable en CI/CD  
-
-👉 **Classification QA : Test NON AUTOMATISABLE (formulaire incompatible avec Selenium).**
-
-Ce statut est **officiel** et doit être indiqué dans `TestExecution.md`.
+### 🧩 Décision QA  
+✔ Test manuel validé  
+✔ Documenté dans TestExecution  
+✔ Marqué comme “Non Automatisable” selon les standards ISTQB  
 
 ---
 
-### ✍️ Auteur & Historique
-- **Rédigé par :** Mohamed Taib Ben Salha – QA Engineer  
-- **Dernière mise à jour :** Novembre 2025  
-- **Projet :** Handball Management – QA 
+✍️ Rédigé par : **Mohamed Taib Ben Salha – QA Engineer**  
+📅 Mise à jour : Novembre 2025  
+📍 Projet : Handball Management – QA  & Automation  
