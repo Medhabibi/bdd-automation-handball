@@ -21,7 +21,7 @@ import io.cucumber.junit.CucumberOptions;
         dryRun = false,
 
         // 🎯 IMPORTANT : Exécuter seulement navigation_login.feature
-        tags ="@navigationLogin"
+        tags ="@inscription_success"
 
 
         )

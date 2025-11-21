@@ -1,4 +1,4 @@
-package com.handball.pages.frontend;
+package com.handball.pages.frontend.login;
 
 import com.handball.helper.Config;
 import org.openqa.selenium.WebDriver;

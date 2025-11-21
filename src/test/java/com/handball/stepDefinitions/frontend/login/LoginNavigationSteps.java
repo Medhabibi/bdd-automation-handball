@@ -1,7 +1,7 @@
-package com.handball.stepDefinitions.frontend;
+package com.handball.stepDefinitions.frontend.login;
 
 import com.handball.helper.Config;
-import com.handball.pages.frontend.LoginPageFrontend;
+import com.handball.pages.frontend.login.LoginPageFrontend;
 import io.cucumber.java.en.*;
 import org.openqa.selenium.WebDriver;
 

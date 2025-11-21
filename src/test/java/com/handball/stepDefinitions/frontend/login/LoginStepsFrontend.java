@@ -1,7 +1,7 @@
-package com.handball.stepDefinitions.frontend;
+package com.handball.stepDefinitions.frontend.login;
 
 import com.handball.helper.Config;
-import com.handball.pages.frontend.HomePageFrontend;
+import com.handball.pages.frontend.login.HomePageFrontend;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import io.cucumber.java.en.Then;
