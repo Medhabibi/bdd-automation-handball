@@ -2,9 +2,14 @@ package com.handball.stepDefinitions.frontend.inscription;
 
 import com.handball.helper.Config;
 import com.handball.pages.frontend.inscription.InscriptionJoueurPageFrontend;
-import io.cucumber.java.en.*;
-import org.junit.Assert;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
+
+import static org.junit.Assert.assertTrue;
+
 
 public class InscriptionJoueurSteps {
 
@@ -41,10 +46,19 @@ public class InscriptionJoueurSteps {
         page.saisirDateNaissance(Config.getData(key));
     }
 
-    @When("il choisit le pays joueur {string}")
-    public void choisir_pays(String key) {
-        page.choisirPaysTunisie();
+    @When("il choisit le pays liste {string}")
+    public void choisir_pays_liste(String key) {
+        String pays = Config.getData(key);      // -> "Tunisie"
+        page.choisirPaysListe(pays);           // select du <select id="pays">
     }
+
+    @When("il choisit l'indicatif telephone {string}")
+    public void choisir_indicatif(String key) {
+        // On ignore la valeur "216", on force Tunisie dans le widget téléphone
+        page.choisirIndicatifTunisie();
+
+    }
+
 
     @When("il saisit le telephone joueur {string}")
     public void saisir_tel(String key) {
@@ -98,6 +112,8 @@ public class InscriptionJoueurSteps {
 
     @Then("l'inscription joueur doit reussir")
     public void inscription_reussie() {
-        Assert.assertTrue(page.inscriptionReussie());
+        assertTrue("Le message de succès n'est pas affiché",
+                page.messageSuccesVisible());
     }
+
 }

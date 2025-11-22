@@ -1,6 +1,5 @@
 package com.handball.pages.frontend.inscription;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -41,6 +40,10 @@ public class InscriptionJoueurPageFrontend {
     @FindBy(id = "date_de_naiss")
     private WebElement dateNaissanceInput;
 
+    @FindBy(id = "pays")
+    private WebElement paysSelect;
+
+
     // ---- Téléphone ----
     @FindBy(className = "iti__selected-flag")
     private WebElement flagMenu;
@@ -51,6 +54,11 @@ public class InscriptionJoueurPageFrontend {
     @FindBy(id = "phone")
     private WebElement telephoneInput;
 
+    // Option Tunisie dans la liste téléphone
+    @FindBy(xpath = "//li[@data-country-code='tn']")
+    private WebElement optionTunisie;
+
+
     @FindBy(id = "taille")
     private WebElement tailleInput;
 
@@ -60,23 +68,28 @@ public class InscriptionJoueurPageFrontend {
     @FindBy(id = "sexe")
     private WebElement sexeSelect;
 
-    @FindBy(id = "poste")
+    @FindBy(id = "postes")
     private WebElement posteSelect;
 
     @FindBy(id = "type_contrat")
     private WebElement contratSelect;
 
-    @FindBy(id = "photo")
+    @FindBy(id = "photo_profil")
     private WebElement photoUpload;
+
 
     @FindBy(id = "mot_de_passe")
     private WebElement motDePasseInput;
 
-    @FindBy(id = "confirmation")
+    @FindBy(id = "c_mot_de_passe")
     private WebElement confirmationInput;
 
-    @FindBy(id = "submit_inscription")
+    @FindBy(id = "submit")
     private WebElement boutonInscription;
+
+    @FindBy(id = "message-alert")
+    private WebElement messageSucces;
+
 
     // ============================
     // 🔹 Actions
@@ -106,14 +119,11 @@ public class InscriptionJoueurPageFrontend {
         dateNaissanceInput.sendKeys(date);
     }
 
-    public void choisirPaysTunisie() {
+    public void choisirIndicatifTunisie() {
         flagMenu.click();
-
         new WebDriverWait(driver, Duration.ofSeconds(5))
-                .until(ExpectedConditions.visibilityOf(countryList));
-
-        WebElement tunisie = driver.findElement(By.cssSelector(".iti__country.iti__tn"));
-        tunisie.click();
+                .until(ExpectedConditions.visibilityOf(optionTunisie));
+        optionTunisie.click();
     }
 
     public void saisirTelephone(String tel) {
@@ -142,9 +152,12 @@ public class InscriptionJoueurPageFrontend {
     public void choisirContrat(String contrat) {
         new Select(contratSelect).selectByValue(contrat);
     }
+    public void choisirPaysListe(String pays) {
+        new Select(paysSelect).selectByVisibleText(pays);
+    }
 
-    public void chargerPhoto(String chemin) {
-        photoUpload.sendKeys(chemin);
+    public void chargerPhoto(String cheminFichier) {
+        photoUpload.sendKeys(cheminFichier);
     }
 
     public void saisirMotDePasse(String mdp) {
@@ -164,4 +177,14 @@ public class InscriptionJoueurPageFrontend {
     public boolean inscriptionReussie() {
         return driver.getCurrentUrl().contains("joueurs_club");
     }
+    public boolean messageSuccesVisible() {
+        try {
+            new WebDriverWait(driver, Duration.ofSeconds(5))
+                    .until(ExpectedConditions.visibilityOf(messageSucces));
+            return messageSucces.isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
 }
