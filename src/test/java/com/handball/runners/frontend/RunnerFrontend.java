@@ -21,10 +21,12 @@ import io.cucumber.junit.CucumberOptions;
         dryRun = false,
 
         // 🎯 IMPORTANT : Exécuter seulement navigation_login.feature
-        tags ="@inscription_success"
+        tags ="@email_existant"
 
 
-        )
+
+
+)
 public class RunnerFrontend {
 
 }
