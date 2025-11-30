@@ -1,138 +1,137 @@
-# 🧪 Test Cases – Handball Management (Réel)
+# 🧪 Test Cases – Handball Management (Frontend)
 
-Ce document regroupe **uniquement les cas de test RÉELS** exécutés dans le cadre du projet  
-**Handball Management – QA Manual & Automation**.
+> ⚠️ **Ce document concerne UNIQUEMENT la partie FRONTEND**  
+La partie ADMIN aura son propre fichier TestCases séparé.
 
-Tous les tests suivent les standards **ISTQB**, avec :  
-✔ ID unique  
-✔ Objectif clair  
-✔ Préconditions  
-✔ Données de test  
-✔ Étapes détaillées  
-✔ Résultats attendus  
-✔ Statut (Pass / Fail / Non automatisable)  
-✔ Lien Bug si applicable  
+Ce document regroupe les **cas de test RÉELS** exécutés dans le module  
+**Handball Management – Frontend**, selon les standards ISTQB.
 
----
-
-# 📋 Table des matières
-
-1. [TC001 – Vérifier la navigation du menu Managers](#tc001)
-2. [TC002 – Connexion Joueur (Test NON AUTOMATISABLE)](#tc002)
+Chaque test inclut :  
+- ID unique  
+- Objectif  
+- Préconditions  
+- Données de test  
+- Étapes détaillées  
+- Résultat attendu  
+- Résultat obtenu  
+- Statut  
+- Automatisabilité  
+- Lien Bug (si applicable)
 
 ---
 
----
+# 📋 Liste des cas de test (Frontend)
 
-# 🧩 <a name="tc001"></a> **TC001 – Vérifier la navigation du menu Managers**
-
-### **ID :** TC001  
-### **Module :** Frontend – Menu principal  
-### **Type :** Test MANUEL + Automatisation (possible)  
-### **Lien Bug :** ✔ **BUG001 – Ouvert**  
+1. [TC001 – Navigation menu → Managers](#tc001)  
+2. [TC002 – Connexion Joueur (3 scénarios)](#tc002)
 
 ---
 
-## 🎯 **Objectif**
-Vérifier que le lien **“Managers”** dans le menu principal redirige vers la bonne page prévue pour les managers.
+---
+
+# 🧩 <a name="tc001"></a> **TC001 – Navigation du menu “Managers”**
+
+### 🔖 Informations générales
+| Champ | Valeur |
+|-------|--------|
+| **ID** | TC001 |
+| **Module** | Frontend – Navigation |
+| **Type** | Fonctionnel |
+| **Criticité** | Haute |
+| **Automatisation** | 🟢 Oui |
+| **Bug lié** | BUG001 |
+| **Statut final** | ❌ ÉCHOUÉ |
 
 ---
 
-## 🔧 **Préconditions**
+## 🎯 Objectif
+Vérifier que le lien **Managers** du menu principal redirige vers la page correcte.
+
+---
+
+## 🔧 Préconditions
 - Navigateur : Chrome 142 / Edge 142  
 - OS : Windows 11  
-- URL de départ : https://www.handball-management.com/index.php  
-- Aucune session existante  
 - Cookies vidés  
+- URL :
+
+```
+https://www.handball-management.com/index.php
+```
 
 ---
 
-## 📥 **Données de test**
-Aucune donnée nécessaire (simple test de navigation de menu).
+## 📥 Données de test
+Aucune donnée nécessaire (test de navigation simple).
 
 ---
 
-## 📝 **Étapes à suivre**
-1. Ouvrir :  
-   `https://www.handball-management.com/index.php`
-2. Repérer le **menu principal**.
-3. Cliquer sur l’onglet **“Managers”**.
-4. Observer **la redirection** et **l'URL obtenue**.
+## 📝 Étapes
+1. Ouvrir la page d’accueil du site.  
+2. Localiser le menu principal.  
+3. Cliquer sur **Managers**.  
+4. Vérifier l’URL et l’interface obtenues.
 
 ---
 
-## 🎯 **Résultat attendu**
-👉 L’utilisateur doit être redirigé vers une page **dédiée aux managers**,  
-par exemple :
+## 🎯 Résultat attendu
+Redirection vers une **page dédiée Managers**, exemple :
 
 ```
 connexion/inscri_equipe.php
 ```
 
-ou une interface Manager spécifique.
-
 ---
 
-## ❌ **Résultat obtenu (réel)**
-➡ Redirection vers la page **Joueurs** :
+## ❌ Résultat obtenu
+Le lien redirige vers :
 
 ```
 connexion/inscri_joueurs.php
 ```
 
-Le code source confirme l’erreur :
-
-```html
-<a class="nav-link" href="les_interfaces/club_joueurs.php">Managers</a>
-```
-
-➡ Le lien pointe vers la **mauvaise page** (Joueurs).
+👉 Le lien HTML est incorrect.
 
 ---
 
-## 🏷️ **Statut d’automatisation**
-🟢 **Automatisable**  
-Ce test sera automatisé dans :
+## 🏷 Automatisation
+🟢 **Possible** – Ce test sera automatisé dans :
 
 ```
 features/frontend/navigation.feature
 ```
 
-Scénario :  
-✔ _Accès à la page Managers_
-
 ---
 
-## 📌 **Statut final**
-❌ **ÉCHOUÉ**  
-➡ Bug généré : **BUG001**
+## 📌 Statut final
+❌ **ÉCHOUÉ** (BUG001 ouvert)
 
 ---
 
 ---
 
-# 🧩 <a name="tc002"></a> **TC002 – Connexion Joueur (Test NON AUTOMATISABLE)**
+# 🧩 <a name="tc002"></a> **TC002 – Connexion Joueur (3 scénarios)**
 
-### **ID :** TC002  
-### **Module :** Frontend – Authentification Joueur  
-### **Type :** Test MANUEL uniquement  
-### **Bug :** Aucun bug fonctionnel  
-### **Statut :** 🔴 **NON AUTOMATISABLE**
+> ⚠️ Les 3 scénarios sont **NON AUTOMATISABLES** à cause de  
+  la librairie `jqBootstrapValidation.js`.
 
 ---
 
-## 🎯 **Objectif**
-Vérifier le comportement réel du formulaire de connexion Joueur avec :
-
-- Identifiants valides  
-- Email incorrect  
-- Mot de passe incorrect  
+## 🔖 Informations générales
+| Champ | Valeur |
+|-------|--------|
+| **ID** | TC002 |
+| **Module** | Frontend – Authentification Joueur |
+| **Type** | Fonctionnel |
+| **Criticité** | Haute |
+| **Automatisation** | 🔴 Non automatisable |
+| **Statut global** | ✔ Réussi en MANUEL |
 
 ---
 
-## 🔧 **Préconditions**
+## 🔧 Préconditions
 - Navigateur : Chrome / Edge  
-- URL page login Joueur :
+- URL :
 
 ```
 https://handball-management.com/connexion/inscri_joueurs.php
@@ -140,86 +139,91 @@ https://handball-management.com/connexion/inscri_joueurs.php
 
 ---
 
-## 📥 **Données de test (réelles issues de config.properties)**
+## 📥 Données de test utilisées
 
-| Jeu | Email | Mot de passe |
-|------|---------------------|----------------|
+| Cas | Email | Mot de passe |
+|------|------------------------|----------------|
 | Valide | admin@gmail.com | Azert123@ |
 | Email incorrect | xxxx@gmail.com | Azert123@ |
 | Mot de passe incorrect | admin@gmail.com | aaaaaa |
 
 ---
 
-## 📝 **Étapes (communes aux 3 scénarios)**
+# ⭐ **TC002-S1 – Connexion valide**
 
-1. Ouvrir l’URL :  
-   `https://handball-management.com/connexion/inscri_joueurs.php`
-2. Saisir un email selon le scénario.
-3. Saisir le mot de passe correspondant.
-4. Cliquer sur **Connexion**.
-5. Observer le résultat.
+### Étapes
+1. Saisir email valide  
+2. Saisir mot de passe valide  
+3. Cliquer sur Connexion  
 
----
-
-## 🎯 **Résultats attendus**
-
-### ✔ **Scénario 1 — Identifiants valides**
-➡ Redirection vers :
+### 🎯 Résultat attendu
+Redirection vers :
 
 ```
 les_interfaces/joueurs_club.php
 ```
 
----
+### ✔ Résultat obtenu
+Identique → connexion réussie
 
-### ✔ **Scénario 2 — Email incorrect**
-➡ Affichage du message :
-
-> **“L'email n'existe pas.”**
-
----
-
-### ✔ **Scénario 3 — Mot de passe incorrect**
-➡ Affichage du message :
-
-> **“Le mot de passe n'est pas correct.”**
+### 📌 Statut
+✔ Réussi (MANUEL)  
+🔴 Non automatisable
 
 ---
 
-# 🔥 **Pourquoi ce test est NON AUTOMATISABLE ?**
+# ⚠️ **TC002-S2 – Email incorrect**
 
-Le formulaire utilise **jqBootstrapValidation.js**, un script JS qui bloque Selenium :
+### Résultat attendu
+Afficher :
 
-### 🚫 Problèmes rencontrés :
-- Événements `input`, `blur`, `change` interceptés  
+> "L'email n'existe pas."
+
+### ✔ Résultat obtenu
+Message identique
+
+### 📌 Statut
+✔ Réussi (MANUEL)  
+🔴 Non automatisable
+
+---
+
+# ⚠️ **TC002-S3 – Mot de passe incorrect**
+
+### Résultat attendu
+Afficher :
+
+> "Le mot de passe n'est pas correct."
+
+### ✔ Résultat obtenu
+Message identique
+
+### 📌 Statut
+✔ Réussi (MANUEL)  
+🔴 Non automatisable
+
+---
+
+# 🚫 Motif de NON AUTOMATISATION (réel)
+
+Les champs du formulaire utilisent :
+
+```
+jqBootstrapValidation.js
+```
+
+Cette librairie bloque Selenium :  
+- `sendKeys()` ne fonctionne pas  
+- focus intercepté  
+- `blur/change` désactivés  
 - `submit()` bloqué  
-- Fausse gestion du focus  
-- Le champ ne reçoit pas les valeurs envoyées par WebDriver  
-- Échec systématique sur la visibilité / interaction
+- erreurs WebDriver → `ElementNotInteractableException`, `Timeout`
 
-➡ **Tous les tests Selenium échouent** (Edge + Chrome).
-
-### 🔍 Conclusion QA
-✔ Fonctionnel **OK**  
-❌ Automatisation **IMPOSSIBLE** (non fiable + instable)
-
-Documenté dans :  
-`BugReports.md → BUG002`
+➡ **Conclusion : tests 100% MANUELS**
 
 ---
 
-## 🏷️ **Statut d’automatisation**
-🔴 **NON AUTOMATISABLE**
-
----
-
-## 📌 **Statut final**
-✔ Tests manuels : **réussis**  
-❌ Automatisation : **impossible (techniquement bloqué)**
-
----
-
-✍️ Rédigé par :  
+# 🧾 Rédigé par  
 **Mohamed Taib Ben Salha – QA Engineer**  
-📅 Mise à jour : Novembre 2025  
-📍 Projet : Handball Management – QA réel  
+📅 Novembre 2025  
+📍 Projet : Handball Management – FRONTEND  
