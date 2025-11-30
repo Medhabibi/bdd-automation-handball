@@ -1,229 +1,110 @@
 # 🧪 Test Cases – Handball Management (Frontend)
-
-> ⚠️ **Ce document concerne UNIQUEMENT la partie FRONTEND**  
-La partie ADMIN aura son propre fichier TestCases séparé.
-
-Ce document regroupe les **cas de test RÉELS** exécutés dans le module  
-**Handball Management – Frontend**, selon les standards ISTQB.
-
-Chaque test inclut :  
-- ID unique  
-- Objectif  
-- Préconditions  
-- Données de test  
-- Étapes détaillées  
-- Résultat attendu  
-- Résultat obtenu  
-- Statut  
-- Automatisabilité  
-- Lien Bug (si applicable)
+Document basé à 100% sur les tests RÉELS exécutés dans le Frontend : Navigation, Connexions, Inscriptions.
 
 ---
 
-# 📋 Liste des cas de test (Frontend)
+## 📋 Liste des cas de test (Frontend)
 
-1. [TC001 – Navigation menu → Managers](#tc001)  
-2. [TC002 – Connexion Joueur (3 scénarios)](#tc002)
-
----
-
----
-
-# 🧩 <a name="tc001"></a> **TC001 – Navigation du menu “Managers”**
-
-### 🔖 Informations générales
-| Champ | Valeur |
-|-------|--------|
-| **ID** | TC001 |
-| **Module** | Frontend – Navigation |
-| **Type** | Fonctionnel |
-| **Criticité** | Haute |
-| **Automatisation** | 🟢 Oui |
-| **Bug lié** | BUG001 |
-| **Statut final** | ❌ ÉCHOUÉ |
+- TC001 – Navigation menu → Managers  
+- TC002 – Connexion Joueur  
+- TC003 – Connexion Entraîneur  
+- TC004 – Connexion Manager  
+- TC005 – Connexion Préparateur  
+- TC006 – Navigation depuis écrans de login  
+- TC007 – Inscription Joueur  
+- TC008 – Inscription Entraîneur  
+- TC009 – Inscription Manager  
+- TC010 – Inscription Entraîneur → Email existant  
 
 ---
 
-## 🎯 Objectif
-Vérifier que le lien **Managers** du menu principal redirige vers la page correcte.
+# 🧩 TC001 – Navigation “Managers”
+**Type :** Manuel + Automatisable  
+**Bug lié :** BUG001  
+**Statut :** Échoué  
+
+### Objectif  
+Vérifier que le lien “Managers” redirige vers l’interface Manager.
+
+### Étapes  
+1. Ouvrir la page d’accueil  
+2. Cliquer sur “Managers”  
+3. Vérifier l’URL
+
+### Attendu  
+`connexion/inscri_equipe.php`
+
+### Obtenu  
+`connexion/inscri_joueurs.php`
 
 ---
 
-## 🔧 Préconditions
-- Navigateur : Chrome 142 / Edge 142  
-- OS : Windows 11  
-- Cookies vidés  
-- URL :
+# 🧩 TC002 – Connexion Joueur
+**Type :** Manuel  
+**Automatisation :** Impossible (BUG002)  
+**Statut :** Réussi  
 
-```
-https://www.handball-management.com/index.php
-```
-
----
-
-## 📥 Données de test
-Aucune donnée nécessaire (test de navigation simple).
+### Scénarios  
+- Identifiants valides  
+- Email incorrect  
+- Mot de passe incorrect  
 
 ---
 
-## 📝 Étapes
-1. Ouvrir la page d’accueil du site.  
-2. Localiser le menu principal.  
-3. Cliquer sur **Managers**.  
-4. Vérifier l’URL et l’interface obtenues.
+# 🧩 TC003 – Connexion Entraîneur
+**Type :** Manuel  
+**Automatisation :** Non (BUG002)  
+**Statut :** Réussi  
 
 ---
 
-## 🎯 Résultat attendu
-Redirection vers une **page dédiée Managers**, exemple :
-
-```
-connexion/inscri_equipe.php
-```
+# 🧩 TC004 – Connexion Manager
+**Type :** Manuel  
+**Automatisation :** Non  
+**Statut :** Réussi  
 
 ---
 
-## ❌ Résultat obtenu
-Le lien redirige vers :
-
-```
-connexion/inscri_joueurs.php
-```
-
-👉 Le lien HTML est incorrect.
+# 🧩 TC005 – Connexion Préparateur
+**Type :** Manuel  
+**Automatisation :** Non  
+**Statut :** Réussi  
 
 ---
 
-## 🏷 Automatisation
-🟢 **Possible** – Ce test sera automatisé dans :
-
-```
-features/frontend/navigation.feature
-```
+# 🧩 TC006 – Navigation depuis les écrans de login
+**Type :** Manuel + Automatisable  
+**Statut :** Réussi  
 
 ---
 
-## 📌 Statut final
-❌ **ÉCHOUÉ** (BUG001 ouvert)
+# 🧩 TC007 – Inscription Joueur
+**Type :** Manuel + Automatisable  
+**Statut :** Réussi  
+
+### Vérifications  
+- Champs obligatoires  
+- Message de succès  
+- Redirection correcte  
 
 ---
 
----
-
-# 🧩 <a name="tc002"></a> **TC002 – Connexion Joueur (3 scénarios)**
-
-> ⚠️ Les 3 scénarios sont **NON AUTOMATISABLES** à cause de  
-  la librairie `jqBootstrapValidation.js`.
+# 🧩 TC008 – Inscription Entraîneur
+**Type :** Manuel + Automatisable  
+**Statut :** Réussi  
 
 ---
 
-## 🔖 Informations générales
-| Champ | Valeur |
-|-------|--------|
-| **ID** | TC002 |
-| **Module** | Frontend – Authentification Joueur |
-| **Type** | Fonctionnel |
-| **Criticité** | Haute |
-| **Automatisation** | 🔴 Non automatisable |
-| **Statut global** | ✔ Réussi en MANUEL |
+# 🧩 TC009 – Inscription Manager
+**Type :** Manuel + Automatisable  
+**Statut :** Réussi  
 
 ---
 
-## 🔧 Préconditions
-- Navigateur : Chrome / Edge  
-- URL :
-
-```
-https://handball-management.com/connexion/inscri_joueurs.php
-```
+# 🧩 TC010 – Inscription Entraîneur – Email déjà existant
+**Type :** Manuel + Automatisable  
+**Statut :** Réussi  
 
 ---
 
-## 📥 Données de test utilisées
-
-| Cas | Email | Mot de passe |
-|------|------------------------|----------------|
-| Valide | admin@gmail.com | Azert123@ |
-| Email incorrect | xxxx@gmail.com | Azert123@ |
-| Mot de passe incorrect | admin@gmail.com | aaaaaa |
-
----
-
-# ⭐ **TC002-S1 – Connexion valide**
-
-### Étapes
-1. Saisir email valide  
-2. Saisir mot de passe valide  
-3. Cliquer sur Connexion  
-
-### 🎯 Résultat attendu
-Redirection vers :
-
-```
-les_interfaces/joueurs_club.php
-```
-
-### ✔ Résultat obtenu
-Identique → connexion réussie
-
-### 📌 Statut
-✔ Réussi (MANUEL)  
-🔴 Non automatisable
-
----
-
-# ⚠️ **TC002-S2 – Email incorrect**
-
-### Résultat attendu
-Afficher :
-
-> "L'email n'existe pas."
-
-### ✔ Résultat obtenu
-Message identique
-
-### 📌 Statut
-✔ Réussi (MANUEL)  
-🔴 Non automatisable
-
----
-
-# ⚠️ **TC002-S3 – Mot de passe incorrect**
-
-### Résultat attendu
-Afficher :
-
-> "Le mot de passe n'est pas correct."
-
-### ✔ Résultat obtenu
-Message identique
-
-### 📌 Statut
-✔ Réussi (MANUEL)  
-🔴 Non automatisable
-
----
-
-# 🚫 Motif de NON AUTOMATISATION (réel)
-
-Les champs du formulaire utilisent :
-
-```
-jqBootstrapValidation.js
-```
-
-Cette librairie bloque Selenium :  
-- `sendKeys()` ne fonctionne pas  
-- focus intercepté  
-- `blur/change` désactivés  
-- `submit()` bloqué  
-- erreurs WebDriver → `ElementNotInteractableException`, `Timeout`
-
-➡ **Conclusion : tests 100% MANUELS**
-
----
-
-# 🧾 Rédigé par  
-**Mohamed Taib Ben Salha – QA Engineer**  
-📅 Novembre 2025  
-📍 Projet : Handball Management – FRONTEND  
+✍️ Rédigé par : **Mohamed Taib Ben Salha – QA Engineer**
