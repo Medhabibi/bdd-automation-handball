@@ -7,9 +7,9 @@ import io.cucumber.junit.CucumberOptions;
 @RunWith(Cucumber.class)
 @CucumberOptions(
 
-        features = "src/test/resources/features/frontend",
+        features = "src/test/resources/features",   // ✔️ lire tout le projet
         glue = {
-                "com.handball.stepDefinitions.frontend",
+                "com.handball.stepDefinitions",      // ✔️ lit toutes les steps
                 "com.handball.hooks"
         },
         plugin = {
@@ -20,14 +20,9 @@ import io.cucumber.junit.CucumberOptions;
         monochrome = true,
         dryRun = false,
 
-        // 🎯 IMPORTANT : Exécuter seulement navigation_login.feature
-        tags ="@email_existant"
-
-
-
-
+        tags = "@entraineur_email_existant"
+        // ✔️ exécute uniquement ta feature
 )
 public class RunnerFrontend {
 
 }
-

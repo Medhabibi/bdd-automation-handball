@@ -1,20 +1,15 @@
-@frontend @inscription @entraineur @email_existant
-Feature: Inscription Entraîneur - Email déjà existant
+@frontend @entraineur_email_existant
+Feature: Vérification Email Existant - Inscription Entraineur
 
-  Scenario: Inscription Entraîneur échoue — Email existant
-    Given l'utilisateur ouvre la page d'inscription Entraineur
-    And il clique sur l'onglet Inscription Entraineur
+  Scenario: Un entraîneur ne peut pas s'inscrire avec un email déjà utilisé
+    Given je suis sur la page d'inscription entraîneur
+    And je clique sur l'onglet inscription entraîneur
 
-    And il remplit le champ "Nom" avec une valeur valide Entraineur
-    And il remplit le champ "Prénom" avec une valeur valide Entraineur
-    And il remplit le champ "Date de naissance" avec une valeur valide Entraineur
-    And il remplit le champ "Téléphone" avec une valeur valide Entraineur
-    And il sélectionne le sexe Entraineur
-    And il remplit tous les autres champs obligatoires Entraineur
+    And je remplis tous les champs obligatoires de l'entraîneur sauf l'email
+    And je saisis un email déjà existant pour l'entraîneur
 
-    And il saisit un email déjà utilisé Entraineur
-    And il remplit les champs facultatifs Entraineur
+    And je remplis les champs facultatifs de l'entraîneur
 
-    When il clique sur le bouton Inscription Entraineur
-    Then un message d'erreur doit s'afficher "L'email existe déjà. Veuillez en choisir un autre."
-    And l'inscription Entraineur doit échouer
+    When je clique sur le bouton d'inscription entraîneur
+    Then un message d'erreur email existe déjà doit s'afficher
+    And l'inscription entraîneur doit échouer
