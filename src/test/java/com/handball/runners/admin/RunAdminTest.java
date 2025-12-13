@@ -11,8 +11,12 @@ import org.junit.runner.RunWith;
                 "com.handball.stepDefinitions.admin",
                 "com.handball.helper"
         },
-        tags ="@dashboard",
-        plugin = {
+        tags="@actions"
+        ,
+
+
+
+plugin = {
                 "pretty",
                 "html:target/cucumber-reports/admin-report.html",
                 "json:target/cucumber-reports/admin-report.json"

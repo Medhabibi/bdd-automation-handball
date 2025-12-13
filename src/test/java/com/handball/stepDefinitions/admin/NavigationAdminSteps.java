@@ -1,12 +1,23 @@
 package com.handball.stepDefinitions.admin;
 
 import com.handball.helper.Config;
-import com.handball.pages.admin.LoginAdminPage;
 import com.handball.pages.admin.AdminNavigationPage;
-import io.cucumber.java.en.*;
+import com.handball.pages.admin.LoginAdminPage;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-import static org.junit.Assert.*;
+import java.time.Duration;
+
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 public class NavigationAdminSteps {
 
@@ -34,92 +45,139 @@ public class NavigationAdminSteps {
 
     @And("il clique sur le bouton Connexion")
     public void cliquer_connexion() {
+        new WebDriverWait(driver, Duration.ofSeconds(6))
+                .until(d -> loginPage.boutonConnexion.isDisplayed());
         loginPage.boutonConnexion.click();
+
+        new WebDriverWait(driver, Duration.ofSeconds(6))
+                .until(d -> d.getCurrentUrl().contains("Admin.php"));
     }
 
     @Then("la page {string} doit s'afficher")
-    public void verifier_page_dashboard(String page) {
+    public void verifier_page(String page) {
         assertTrue(driver.getCurrentUrl().contains(page));
     }
 
     // ==================================================
-    // 📌 TC-ADMIN-NAV-001 : Vérifier visibilité des menus
+    // 📌 MENU NAVIGATION
     // ==================================================
-    @Then("le menu {string} doit être visible")
-    public void menu_visible(String menu) {
-
+    @When("il clique sur le menu {string}")
+    public void click_menu(String menu) {
         switch (menu) {
-            case "Dashboard":
-                assertTrue(nav.menuDashboard.isDisplayed());
-                break;
-
-            case "Historique":
-                assertTrue(nav.menuHistorique.isDisplayed());
-                break;
-
-            case "Messages non lus":
-                assertTrue(nav.menuMessagesNonLus.isDisplayed());
-                break;
-
-            case "Messages lus":
-                assertTrue(nav.menuMessagesLus.isDisplayed());
-                break;
-
-            case "Conversation":
-                assertTrue(nav.menuConversation.isDisplayed());
-                break;
-
-            case "Tables":
-                assertTrue(nav.menuTables.isDisplayed());
-                break;
-
-            case "Tables d'annonces":
-                assertTrue(nav.menuTablesAnnonces.isDisplayed());
-                break;
-
-            default:
-                fail("Menu inconnu : " + menu);
-        }
-    }
-
-    // ==================================================
-    // 📌 TC-ADMIN-NAV-002 : Navigation
-    // ==================================================
-    @When("l'admin clique sur le menu {string}")
-    public void cliquer_menu(String menu) {
-
-        switch (menu) {
-            case "Dashboard":
-                nav.menuDashboard.click();
-                break;
-
-            case "Historique":
-                nav.menuHistorique.click();
-                break;
-
-            case "Messages non lus":
-                nav.menuMessagesNonLus.click();
-                break;
-
-            case "Messages lus":
-                nav.menuMessagesLus.click();
-                break;
-
-            case "Conversation":
-                nav.menuConversation.click();
-                break;
-
             case "Tables":
                 nav.menuTables.click();
                 break;
-
+            case "Dashboard":
+                nav.menuDashboard.click();
+                break;
+            case "Historique":
+                nav.menuHistorique.click();
+                break;
+            case "Messages non lus":
+                nav.menuMessagesNonLus.click();
+                break;
+            case "Messages lus":
+                nav.menuMessagesLus.click();
+                break;
+            case "Conversation":
+                nav.menuConversation.click();
+                break;
             case "Tables d'annonces":
                 nav.menuTablesAnnonces.click();
                 break;
-
             default:
-                fail("Menu inconnu : " + menu);
+                fail("Menu inconnu → " + menu);
         }
     }
+
+    // =====================================================================================
+    // 🟢  recherche ⚠️
+    // =====================================================================================
+    @And("il ouvre la section joueurs depuis la card")
+    public void ouvrir_section_joueurs_depuis_card() throws InterruptedException {
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+        By boutonJoueurs = By.xpath("//a[contains(@href,'tabJoueurs.php')]");
+
+        // Si déjà sur tab -> skip direct (réexécution, pagination, etc)
+        if(driver.getCurrentUrl().contains("tabJoueurs.php")) {
+            return;
+        }
+
+        // 🔥 Scroll intelligent (pas full direct)
+        for (int i = 0; i < 7; i++) {
+            ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,300)");
+            Thread.sleep(400);
+
+            if(!driver.findElements(boutonJoueurs).isEmpty()) {
+                break;
+            }
+        }
+
+        WebElement link = wait.until(ExpectedConditions.elementToBeClickable(boutonJoueurs));
+
+        // 🔥 Double sécurité si premier clic non pris → reclick
+        try {
+            link.click();
+        } catch(Exception e) {
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", link);
+        }
+
+        // 🟩 Validation plus fiable → on attend la TABLE
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//table")));
+    }
+// =========================================================================
+// 🔥 CONNEXION DIRECTE + ACCÈS À LA PAGE JOUEURS (réutilisable pagination)
+// =========================================================================
+
+    @Given("que l'admin est connecté")
+    public void admin_est_connecte() {
+
+        // force le chargement du fichier si pas déjà fait
+        if(Config.getProperty("admin.email") == null) {
+            Config.loadProperties();   // 🔥 version correcte
+        }
+
+
+        driver.get(Config.getProperty("admin.login.url"));
+
+        String email = Config.getProperty("admin.username");
+        String mdp   = Config.getProperty("admin.password");
+
+        if(email == null || mdp == null || email.isEmpty() || mdp.isEmpty()) {
+            throw new RuntimeException("❌ Email / Mot de passe admin non chargé dans config.properties");
+        }
+
+        loginPage.champEmail.sendKeys(email);
+        loginPage.champMotDePasse.sendKeys(mdp);
+        loginPage.boutonConnexion.click();
+
+        new WebDriverWait(driver, Duration.ofSeconds(8))
+                .until(ExpectedConditions.urlContains("Admin.php"));
+
+        System.out.println("✔ Connexion Admin OK !");
+    }
+
+
+    @And("il est sur la page {string}")
+    public void il_est_sur_la_page(String page) {
+
+        // si TAB JOUEURS demandé → navigation automatique
+        if(page.equals("tabJoueurs.php")) {
+
+            nav.menuTables.click(); // ouvre section Tables
+
+            // utilise ton step existant
+            try {
+                ouvrir_section_joueurs_depuis_card();
+            } catch (Exception ignored) {}
+        }
+
+        // vérification finale
+        new WebDriverWait(driver, Duration.ofSeconds(6))
+                .until(ExpectedConditions.urlContains(page));
+    }
+
 }
+
 

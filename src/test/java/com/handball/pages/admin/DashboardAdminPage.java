@@ -68,4 +68,3 @@ public class DashboardAdminPage {
 
     public void clickCardMessagesNonLus() { cardMessagesNonLus.click(); }
 }
-

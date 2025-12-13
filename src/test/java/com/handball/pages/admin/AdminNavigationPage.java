@@ -15,7 +15,7 @@ public class AdminNavigationPage {
     }
 
     // =============================
-    // 🔹 Menus latéraux (HTML réel)
+    // 🔹 Menus latéraux
     // =============================
 
     @FindBy(xpath = "//a[@href='Admin.php']")
@@ -38,4 +38,18 @@ public class AdminNavigationPage {
 
     @FindBy(xpath = "//a[@href='tabClubChJ.php']")
     public WebElement menuTablesAnnonces;
+
+    // ==========================================================
+    // 🔥 Navigation via CARD "Joueurs"
+    // ==========================================================
+
+    // ⬇ card-body texte "Total des joueurs: ..."
+    @FindBy(xpath = "//div[contains(text(),'Total des joueurs')]")
+    public WebElement cardJoueurs;
+
+    // ⬇ Bouton "Voir les détails" dans la card
+    @FindBy(xpath = "//a[contains(@href,'tabJoueurs.php') and contains(text(),'Voir')]")
+    public WebElement cardVoirDetails;
 }
+
+
